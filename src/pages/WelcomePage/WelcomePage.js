@@ -56,7 +56,7 @@ const WelcomePage = () => {
         <div className="btn-upload w-64 sm:w-80 h-14" {...getRootProps()}>
           <input {...getInputProps()} />
           <span className="mr-2">{'Upload CSV '}</span>
-          <UploadIcon />
+          <UploadIcon className="w-6" />
         </div>
         <GoogleSheetForm addPayrolls={addPayrolls} />
         <PayrollForm addPayroll={addPayroll} />
