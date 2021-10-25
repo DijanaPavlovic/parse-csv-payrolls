@@ -37,7 +37,11 @@ const PayrollForm = ({ addPayroll }) => {
       </label>
       <input
         name="recipient-account"
-        {...register('recipientAccount', { required: true, maxLength: 20 })}
+        {...register('recipientAccount', {
+          required: true,
+          maxLength: 20,
+          pattern: /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/,
+        })}
         className="col-span-5 p-1 h-8 sm:h-10 bg-gray border rounded-md border-primary focus:outline-none focus:ring-1 focus:ring-primary"
       />
       <select

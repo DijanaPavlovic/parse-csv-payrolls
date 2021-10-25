@@ -6,7 +6,8 @@ import { useDropzone } from 'react-dropzone';
 import logo from '../../assets/logo.png';
 import { ReactComponent as UploadIcon } from '../../assets/upload.svg';
 import { PayrollContext } from '../../context/PayrollContext';
-import { getUniqueId } from '../../utils';
+import { transformPayrolls } from '../../utils';
+import GoogleSheetForm from './GoogleSheetForm';
 import PayrollForm from './PayrollForm';
 
 const WelcomePage = () => {
@@ -22,16 +23,8 @@ const WelcomePage = () => {
 
   const parseFile = (file) => {
     Papa.parse(file, {
-      complete: ({ data }) => {
-        const csvPayrolls = data.map(([recipientAccount, token, amount]) => ({
-          recipientAccount,
-          token,
-          amount,
-          id: getUniqueId(),
-        }));
-
-        setCsvPayrolls(csvPayrolls);
-      },
+      header: true,
+      complete: ({ data }) => setCsvPayrolls(transformPayrolls(data)),
     });
   };
 
@@ -60,11 +53,12 @@ const WelcomePage = () => {
       </header>
 
       <main className="w-11/12 sm:w-3/5 xl:w-2/5 mx-auto">
-        <div className="btn-upload" {...getRootProps()}>
+        <div className="btn-upload w-64 sm:w-80 h-14" {...getRootProps()}>
           <input {...getInputProps()} />
           <span className="mr-2">{'Upload CSV '}</span>
           <UploadIcon />
         </div>
+        <GoogleSheetForm addPayrolls={addPayrolls} />
         <PayrollForm addPayroll={addPayroll} />
         {payrolls.map((payroll) => renderPayroll(payroll))}
       </main>
