@@ -27,7 +27,7 @@ const PayrollForm = ({ addPayroll }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-12 gap-2 text-sm mb-8">
       <label className="col-span-5" htmlFor="recipient-account">
-        Recipient Account
+        Recipient Account Dev
       </label>
       <label className="col-span-3" htmlFor="token">
         Token
