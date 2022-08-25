@@ -3,7 +3,6 @@ import React, { useContext, useCallback, useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import { useDropzone } from 'react-dropzone';
 
-import logo from '../../assets/logo.png';
 import { ReactComponent as UploadIcon } from '../../assets/upload.svg';
 import { PayrollContext } from '../../context/PayrollContext';
 import { transformPayrolls } from '../../utils';
@@ -46,10 +45,7 @@ const WelcomePage = () => {
   return (
     <>
       <header className="sm:px-6 py-8 sm:py-12">
-        <img src={logo} className="w-24 mx-auto" alt="StreamFlow Finance logo" />
-        <h1 className="text-5xl sm:text-6xl text-center">
-          Stream<b>Flow</b>
-        </h1>
+        <h1 className="text-5xl sm:text-xl text-center">Upload and parse CSV payroll files</h1>
       </header>
 
       <main className="w-11/12 sm:w-3/5 xl:w-2/5 mx-auto">
